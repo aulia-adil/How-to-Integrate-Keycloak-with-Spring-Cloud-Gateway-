@@ -1,0 +1,28 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway:
+            provider: keycloak
+            client-id: springboot-testing
+            client-secret: skEsUGd0QF0IuPttKWjuoR5HlXIzIklW
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8081/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8090/realms/testing-realm
+  cloud:
+    gateway:
+      routes:
+        - id: test
+          uri: http://localhost:8080 # resource server location
+          predicates:
+            - Path=/** # localhost:8081/*whatever* -> localhost:8080/*whatever*
+          filters:
+            - TokenRelay=
+
+server:
+  port: 8081

@@ -1,0 +1,7 @@
+FROM postgres:12.13-bullseye
+
+# Copy the SQL dump file to the container
+#COPY postgres-data-for-keycloak-configuration.sql /docker-entrypoint-initdb.d/
+
+# Expose the PostgreSQL port (default: 5432)
+EXPOSE 5432

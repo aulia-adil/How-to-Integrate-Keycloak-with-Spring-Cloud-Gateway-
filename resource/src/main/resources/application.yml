@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application.name: resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/testing-realm
+
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
